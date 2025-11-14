@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { User } from "../../types/TipoUser";
 
 export default function Login() {
@@ -28,7 +28,6 @@ export default function Login() {
       }
 
       localStorage.setItem("user", JSON.stringify(user));
-      alert(`Bem-vindo(a), ${user.nome}!`);
       navigate("/home");
     } catch (err) {
       console.error(err);
@@ -37,51 +36,56 @@ export default function Login() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen bg-white text-gray-900">
-      <section className="bg-gray-100 border border-gray-300 p-8 rounded-xl w-80 shadow-lg flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-6">Login</h1>
+    <main className="h-screen flex justify-center items-center 
+       bg-gradient-to-br from-[#02353C] via-[#2EAF7D] to-[#3FD0C9]">
 
-        <form
-          onSubmit={handleLogin}
-          className="w-full flex flex-col gap-4"
+      <form
+        onSubmit={handleLogin}
+        className="bg-white/20 backdrop-blur-md p-8 rounded-2xl w-80 
+        flex flex-col gap-4 shadow-xl border border-white/30"
+      >
+        <h1 className="text-3xl font-bold text-white text-center">
+          Equilibra
+        </h1>
+
+        <input
+          type="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9] text-[#02353C]"
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9] text-[#02353C]"
+          required
+        />
+
+        {error && <p className="text-red-200 text-sm text-center">{error}</p>}
+
+        <button
+          type="submit"
+          className="rounded-full text-white font-semibold py-3 
+          bg-gradient-to-r from-[#2EAF7D] to-[#3FD0C9]"
         >
-          <input
-            type="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="p-3 rounded border border-gray-300 bg-white text-gray-900"
-            required
-          />
+          Entrar
+        </button>
 
-          <input
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            className="p-3 rounded border border-gray-300 bg-white text-gray-900"
-            required
-          />
-
-          {error && (
-            <p className="text-red-600 text-sm text-center">{error}</p>
-          )}
-
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded p-3 font-semibold transition"
+        <p className="text-white text-sm text-center">
+          Não tem conta?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            className="underline cursor-pointer"
           >
-            Entrar
-          </button>
-        </form>
-
-        <p className="mt-4 text-sm text-gray-600">
-          Ainda não tem conta?{" "}
-          <Link to="/register" className="text-blue-500 hover:underline">
             Cadastre-se
-          </Link>
+          </span>
         </p>
-      </section>
+      </form>
     </main>
   );
 }

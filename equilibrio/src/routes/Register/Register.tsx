@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { User } from "../../types/TipoUser";
 
 export default function Register() {
@@ -15,94 +15,104 @@ export default function Register() {
 
     try {
       const res = await fetch("http://localhost:8080/usuarios");
-      if (!res.ok) throw new Error("Erro ao verificar usuários existentes.");
       const usuarios: User[] = await res.json();
 
       if (usuarios.some((u) => u.email === email)) {
-        setError("Este e-mail já está cadastrado!");
+        setError("E-mail já cadastrado!");
         return;
       }
+
       if (usuarios.some((u) => u.nome === nome)) {
-        setError("Este nome de usuário já está em uso!");
+        setError("Nome de usuário já existe!");
         return;
       }
 
-      const novoUsuario: User = { nome, email, senha };
+      const novoUsuario: User = {
+        idUsuario: 0,
+        nome,
+        email,
+        senha,
+      };
 
-      const response = await fetch("http://localhost:8080/usuarios", {
+      const response = await fetch("http://localhost:8080/usuario", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novoUsuario),
       });
 
-      if (!response.ok) throw new Error("Erro ao cadastrar o usuário.");
+      if (!response.ok) throw new Error("Erro ao cadastrar.");
 
-      const user: User = await response.json();
+      const user = await response.json();
 
       localStorage.setItem("user", JSON.stringify(user));
-      alert("Cadastro realizado com sucesso!");
       navigate("/");
+
     } catch (err) {
       console.error(err);
-      setError("Erro ao conectar ao servidor. Tente novamente.");
+      setError("Erro ao conectar ao servidor.");
     }
   }
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen bg-white text-gray-900">
-      <section className="bg-gray-100 border border-gray-300 p-8 rounded-xl w-80 shadow-lg flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-6">Cadastro</h1>
+    <main className="h-screen flex justify-center items-center 
+       bg-gradient-to-br from-[#02353C] via-[#2EAF7D] to-[#3FD0C9]">
 
-        <form
-          onSubmit={handleRegister}
-          className="w-full flex flex-col gap-4"
+      <form
+        onSubmit={handleRegister}
+        className="bg-white/20 backdrop-blur-md p-8 rounded-2xl w-80 
+        flex flex-col gap-4 shadow-xl border border-white/30"
+      >
+        <h1 className="text-3xl font-bold text-white text-center">
+          Criar conta
+        </h1>
+
+        <input
+          type="text"
+          placeholder="Nome completo"
+          value={nome}
+          onChange={(e) => setNome(e.target.value)}
+          className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9] text-[#02353C]"
+          required
+        />
+
+        <input
+          type="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9] text-[#02353C]"
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9] text-[#02353C]"
+          required
+        />
+
+        {error && <p className="text-red-200 text-sm text-center">{error}</p>}
+
+        <button
+          type="submit"
+          className="rounded-full text-white font-semibold py-3 
+          bg-gradient-to-r from-[#2EAF7D] to-[#3FD0C9]"
         >
-          <input
-            type="text"
-            placeholder="Nome completo"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            className="p-3 rounded border border-gray-300 bg-white text-gray-900"
-            required
-          />
+          Cadastrar
+        </button>
 
-          <input
-            type="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="p-3 rounded border border-gray-300 bg-white text-gray-900"
-            required
-          />
-
-          <input
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            className="p-3 rounded border border-gray-300 bg-white text-gray-900"
-            required
-          />
-
-          {error && (
-            <p className="text-red-600 text-sm text-center">{error}</p>
-          )}
-
-          <button
-            type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white rounded p-3 font-semibold transition"
+        <p className="text-white text-sm text-center">
+          Já tem conta?{" "}
+          <span
+            onClick={() => navigate("/")}
+            className="underline cursor-pointer"
           >
-            Cadastrar
-          </button>
-        </form>
-
-        <p className="mt-4 text-sm text-gray-600">
-          Já tem uma conta?{" "}
-          <Link to="/" className="text-blue-500 hover:underline">
             Fazer login
-          </Link>
+          </span>
         </p>
-      </section>
+      </form>
     </main>
   );
 }
