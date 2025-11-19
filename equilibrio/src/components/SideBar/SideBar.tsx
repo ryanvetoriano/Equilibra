@@ -17,6 +17,7 @@ export default function Sidebar() {
         <NavItem to="/tarefas" label="Tarefas" />
         <NavItem to="/categorias" label="Categorias" />
         <NavItem to="/perfil" label="Perfil" />
+        <NavItem to="/integrantes" label="Integrantes"/>
       </nav>
 
       <button

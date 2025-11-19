@@ -13,6 +13,7 @@ import MainLayout from "./layouts/MainLayout.tsx";
 import Tarefas from "./routes/Tarefas/Tarefas.tsx";
 import Perfil from "./routes/Perfil/index.tsx";
 import Categorias from "./routes/Categorias/index.tsx";
+import Integrantes from "./routes/Integrantes/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
           { path: "/home", element: <Home /> },
           { path: "/tarefas", element: <Tarefas /> },
           { path: "/categorias", element: <Categorias /> },
-          { path: "/perfil", element: <Perfil /> }
+          { path: "/perfil", element: <Perfil /> },
+          { path: "/integrantes", element: <Integrantes/>}
         ],
       },
     ],
