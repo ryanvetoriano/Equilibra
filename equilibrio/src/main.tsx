@@ -12,6 +12,7 @@ import Home from "./routes/Home/Home.tsx";
 import MainLayout from "./layouts/MainLayout.tsx"; 
 import Tarefas from "./routes/Tarefas/Tarefas.tsx";
 import Perfil from "./routes/Perfil/index.tsx";
+import Categorias from "./routes/Categorias/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
         children: [
           { path: "/home", element: <Home /> },
           { path: "/tarefas", element: <Tarefas /> },
-          // { path: "/categorias", element: <Categorias /> }
+          { path: "/categorias", element: <Categorias /> },
           { path: "/perfil", element: <Perfil /> }
         ],
       },
