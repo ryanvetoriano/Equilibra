@@ -10,9 +10,27 @@ interface Props {
 export default function CategoriaForm({ close, categoria, onSave }: Props) {
     const [nome, setNome] = useState(categoria?.nome || "");
     const [tipo, setTipo] = useState(categoria?.tipo || "");
+    const [error, setError] = useState("");
 
     async function salvar(e: React.FormEvent) {
         e.preventDefault();
+        setError("");
+
+        // 🔍 Buscar todas categorias
+        const res = await fetch("http://localhost:8080/categorias");
+        const todas: TipoCategoria[] = await res.json();
+
+        // ❗ Verificar duplicação
+        const nomeDuplicado = todas.some(
+            (c) =>
+                c.nome.toLowerCase() === nome.toLowerCase() &&
+                c.idCategoria !== categoria?.idCategoria
+        );
+
+        if (nomeDuplicado) {
+            setError("Já existe uma categoria com esse nome.");
+            return;
+        }
 
         const payload = { nome, tipo };
 
@@ -42,10 +60,16 @@ export default function CategoriaForm({ close, categoria, onSave }: Props) {
                     {categoria ? "Editar Categoria" : "Nova Categoria"}
                 </h2>
 
+                {error && (
+                    <div className="p-3 bg-red-200 text-red-800 rounded-md text-sm text-center">
+                        {error}
+                    </div>
+                )}
+
                 <label className="text-sm font-medium text-[#02353C]">Nome</label>
                 <input
                     type="text"
-                    placeholder="Ex: Trabalho"
+                    placeholder="Ex: Reunião"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
                     className="p-3 border rounded"
@@ -55,7 +79,7 @@ export default function CategoriaForm({ close, categoria, onSave }: Props) {
                 <label className="text-sm font-medium text-[#02353C]">Tipo</label>
                 <input
                     type="text"
-                    placeholder="Ex: Pessoal / Profissional"
+                    placeholder="Ex: TRABALHO / PESSOAL"
                     value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
                     className="p-3 border rounded"
