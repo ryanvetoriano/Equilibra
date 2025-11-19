@@ -7,6 +7,8 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(""); 
+
   const navigate = useNavigate();
 
   async function handleRegister(e: React.FormEvent) {
@@ -28,13 +30,12 @@ export default function Register() {
       }
 
       const novoUsuario: User = {
-        idUsuario: 0,
         nome,
         email,
         senha,
       };
 
-      const response = await fetch("http://localhost:8080/usuario", {
+      const response = await fetch("http://localhost:8080/usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novoUsuario),
@@ -45,7 +46,9 @@ export default function Register() {
       const user = await response.json();
 
       localStorage.setItem("user", JSON.stringify(user));
-      navigate("/");
+
+      setSuccess("Conta criada com sucesso!");
+      setTimeout(() => navigate("/"), 2000);
 
     } catch (err) {
       console.error(err);
@@ -59,12 +62,24 @@ export default function Register() {
 
       <form
         onSubmit={handleRegister}
-        className="bg-white/20 backdrop-blur-md p-8 rounded-2xl w-80 
+        className="relative bg-white/20 backdrop-blur-md p-8 rounded-2xl w-80 
         flex flex-col gap-4 shadow-xl border border-white/30"
       >
         <h1 className="text-3xl font-bold text-white text-center">
           Criar conta
         </h1>
+
+        {success && (
+          <div
+            className="
+              absolute -top-32 left-1/2 -translate-x-1/2 
+              bg-gradient-to-r from-[#2EAF7D] to-[#3FD0C9]
+              text-white px-18 py-3 rounded-xl shadow-lg
+            "
+          >
+            {success}
+          </div>
+        )}
 
         <input
           type="text"
