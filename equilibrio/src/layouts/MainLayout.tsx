@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Sidebar from "../components/SideBar/SideBar";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 export default function MainLayout() {
   const navigate = useNavigate();
@@ -18,9 +19,11 @@ export default function MainLayout() {
       <main className="flex-1 flex flex-col">
         <Header />
 
-        <section className="p-8">
+        <section className="p-8 flex-1">
           <Outlet />
         </section>
+
+        <Footer />
       </main>
     </div>
   );
