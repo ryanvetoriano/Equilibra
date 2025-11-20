@@ -47,8 +47,11 @@ export default function Home() {
   const totalTarefas = tarefas.length;
   const totalMinutos = tarefas.reduce((sum, t) => sum + t.duracaoMin, 0);
 
+  const hoje = new Date();
+
+  const hojeStr = hoje.toISOString().split("T")[0]; // "2025-11-20"
   const tarefasHoje = tarefas.filter(
-    (t) => new Date(t.dataTarefa).toDateString() === new Date().toDateString()
+    t => t.dataTarefa.split("T")[0] === hojeStr
   ).length;
 
   const dias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
