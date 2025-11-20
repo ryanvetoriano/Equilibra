@@ -4,10 +4,10 @@ export default function Footer() {
   return (
     <footer
       className="
-        mt-10 w-full 
+        w-full 
         bg-gradient-to-r from-[#02353C] to-[#196C84]
         text-white
-        py-8 px-6
+        py-4 px-6
         rounded-t-3xl
         shadow-lg
       "
@@ -39,7 +39,7 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
 
             <Link
-              to="https://github.com/ryanvetoriano/equilibrio"
+              to="https://github.com/ryanvetoriano/Equilibra"
               target="_blank"
               className="flex items-center gap-2 hover:opacity-80 transition"
             >
@@ -50,24 +50,33 @@ export default function Footer() {
             </Link>
 
             <Link
-              to="https://www.linkedin.com/in/ryanvetoriano/"
-              target="_blank"
-              className="flex items-center gap-2 hover:opacity-80 transition"
-            >
-              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
-                <path d="M4.98 3.5A2.5 2.5 0 112.48 6 2.5 2.5 0 014.98 3.5zM3 8.98h4v12H3zM14.5 9c-2.33 0-3.5 1.36-3.5 3.91v8.07h-4v-12h4v1.6a4.88 4.88 0 014.47-2.6c3.1 0 5.03 1.94 5.03 5.74v7.26h-4v-7.26c0-1.87-.7-2.72-2-2.72z"/>
-              </svg>
-              LinkedIn
-            </Link>
-
-            <Link
               to="mailto:vetorianosilva@gmail.com"
               className="flex items-center gap-2 hover:opacity-80 transition"
             >
               <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
                 <path d="M20 4H4a2 2 0 00-2 2v1l10 6 10-6V6a2 2 0 00-2-2zm0 4.2l-8.4 5.1a1 1 0 01-1.2 0L4 8.2V18a2 2 0 002 2h12a2 2 0 002-2z"/>
               </svg>
-              vetorianosilva@gmail.com
+              vetorianosilva@gmail.com - Ryan
+            </Link>
+
+            <Link
+              to="mailto:pietrosalomao1@gmail.com"
+              className="flex items-center gap-2 hover:opacity-80 transition"
+            >
+              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                <path d="M20 4H4a2 2 0 00-2 2v1l10 6 10-6V6a2 2 0 00-2-2zm0 4.2l-8.4 5.1a1 1 0 01-1.2 0L4 8.2V18a2 2 0 002 2h12a2 2 0 002-2z"/>
+              </svg>
+              pietrosalomao1@gmail.com - Pietro
+            </Link>
+
+            <Link
+              to="mailto:rm564002@fiap.com.br"
+              className="flex items-center gap-2 hover:opacity-80 transition"
+            >
+              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
+                <path d="M20 4H4a2 2 0 00-2 2v1l10 6 10-6V6a2 2 0 00-2-2zm0 4.2l-8.4 5.1a1 1 0 01-1.2 0L4 8.2V18a2 2 0 002 2h12a2 2 0 002-2z"/>
+              </svg>
+              rm564002@fiap.com.br - Raul
             </Link>
           </div>
         </div>
