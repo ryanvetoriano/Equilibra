@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { User } from "../../types/TipoUser";
 import type { TipoTarefa } from "../../types/TipoTarefa";
 
 export default function Perfil() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState<User>(() => {
     return JSON.parse(localStorage.getItem("user") || "{}");
   });
@@ -10,6 +13,7 @@ export default function Perfil() {
   const [tarefas, setTarefas] = useState<TipoTarefa[]>([]);
   const [editMode, setEditMode] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const [form, setForm] = useState({
     nome: user.nome,
@@ -40,20 +44,38 @@ export default function Perfil() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
+  async function deleteAccount() {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/usuarios/${user.idUsuario}`,
+        { method: "DELETE" }
+      );
 
-  // ============================================================
-  // 🔥 Função saveChanges() com validação + alert personalizado
-  // ============================================================
+      if (!response.ok) throw new Error("Erro ao excluir conta.");
+
+      localStorage.removeItem("user");
+
+      setAlertMsg("Conta excluída com sucesso!");
+      setTimeout(() => {
+        setAlertMsg("");
+        navigate("/");
+      }, 1500);
+
+    } catch (err) {
+      console.error(err);
+      setAlertMsg("Erro ao excluir conta.");
+      setTimeout(() => setAlertMsg(""), 2500);
+    }
+  }
+
   async function saveChanges() {
     if (!user.idUsuario) return;
     setSaving(true);
 
     try {
-      // 1 — Buscar todos os usuários
       const resUsers = await fetch("http://localhost:8080/usuarios");
       const allUsers: User[] = await resUsers.json();
 
-      // 2 — Verifica e-mail duplicado
       const emailDuplicado = allUsers.find(
         (u) => u.email === form.email && u.idUsuario !== user.idUsuario
       );
@@ -64,7 +86,6 @@ export default function Perfil() {
         return;
       }
 
-      // 3 — Verifica nome duplicado
       const nomeDuplicado = allUsers.find(
         (u) => u.nome === form.nome && u.idUsuario !== user.idUsuario
       );
@@ -75,13 +96,8 @@ export default function Perfil() {
         return;
       }
 
-      // 4 — Construir objeto atualizado
-      const updatedUser: User = {
-        ...user,
-        ...form,
-      };
+      const updatedUser: User = { ...user, ...form };
 
-      // 5 — PUT no backend
       const response = await fetch(
         `http://localhost:8080/usuarios/${user.idUsuario}`,
         {
@@ -91,11 +107,9 @@ export default function Perfil() {
         }
       );
 
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error("Erro ao atualizar usuário no servidor");
-      }
 
-      // 6 — Atualizar localStorage + estado
       localStorage.setItem("user", JSON.stringify(updatedUser));
       setUser(updatedUser);
       setEditMode(false);
@@ -112,7 +126,6 @@ export default function Perfil() {
     }
   }
 
-  // Estatísticas
   const totalTarefas = tarefas.length;
   const totalMinutos = tarefas.reduce((sum, t) => sum + t.duracaoMin, 0);
   const tarefasHoje = tarefas.filter(
@@ -121,13 +134,12 @@ export default function Perfil() {
 
   return (
     <>
-      {/* ALERT PERSONALIZADO */}
       {alertMsg && (
         <div
           className="fixed top-6 left-1/2 -translate-x-1/2 
           bg-white/80 backdrop-blur-md border border-[#3FD0C9]
           px-6 py-3 rounded-xl text-[#02353C] font-semibold shadow-xl
-          animate-fade"
+          animate-fade z-[60]"
         >
           {alertMsg}
         </div>
@@ -136,10 +148,8 @@ export default function Perfil() {
       <main className="p-6 flex flex-col gap-8 text-[#02353C]">
         <h1 className="text-3xl font-bold">Meu Perfil</h1>
 
-        {/* CARD DO PERFIL */}
         <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
 
-          {/* Avatar */}
           <div
             className="w-28 h-28 rounded-full bg-gradient-to-br from-[#2EAF7D] to-[#3FD0C9]
             flex items-center justify-center text-white text-4xl font-bold"
@@ -147,7 +157,6 @@ export default function Perfil() {
             {user.nome?.charAt(0) || "U"}
           </div>
 
-          {/* Informações */}
           <div className="flex-1">
 
             {!editMode ? (
@@ -164,6 +173,15 @@ export default function Perfil() {
                 >
                   Editar Perfil
                 </button>
+
+                <button
+                  onClick={() => setShowDeleteModal(true)}
+                  className="mt-4 ml-2 px-5 py-2 rounded-full bg-red-500 text-white 
+                  hover:bg-red-600 transition"
+                >
+                  Excluir Conta
+                </button>
+
               </>
             ) : (
               <>
@@ -228,7 +246,6 @@ export default function Perfil() {
           </div>
         </div>
 
-        {/* ESTATÍSTICAS */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">Resumo da Atividade</h2>
 
@@ -258,6 +275,41 @@ export default function Perfil() {
           </div>
         </section>
       </main>
+
+      {showDeleteModal && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white w-[90%] max-w-md p-6 rounded-2xl shadow-xl border border-[#3FD0C9]/40 animate-fade">
+
+            <h2 className="text-xl font-bold text-[#02353C] text-center">
+              Tem certeza que deseja excluir sua conta?
+            </h2>
+
+            <p className="text-center text-[#02353C]/70 mt-2 text-sm">
+              Esta ação é <strong>permanente</strong> e não poderá ser desfeita.
+            </p>
+
+            <div className="flex justify-center gap-4 mt-6">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                className="px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+              >
+                Cancelar
+              </button>
+
+              <button
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  deleteAccount();
+                }}
+                className="px-5 py-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition"
+              >
+                Sim, excluir
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
     </>
   );
 }
