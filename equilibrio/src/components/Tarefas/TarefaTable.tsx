@@ -21,7 +21,7 @@ export default function TarefaTable({ tarefas, onEdit, onUpdate }: Props) {
   return (
     <>
       <div className="overflow-x-auto rounded-xl shadow bg-white">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-left border-collapse text-[#02353C]">
           <thead className="bg-[#02353C] text-white">
             <tr>
               <th className="p-4">Título</th>
@@ -37,7 +37,12 @@ export default function TarefaTable({ tarefas, onEdit, onUpdate }: Props) {
               <tr
                 key={t.idTarefa}
                 onClick={() => setSelected(t)}
-                className="border-b hover:bg-[#F0F7F8] transition cursor-pointer"
+                className="
+            border-b border-gray-200
+            hover:bg-[#F0F7F8]
+            transition cursor-pointer
+            text-[#02353C]
+          "
               >
                 <td className="p-4">{t.titulo}</td>
                 <td className="p-4">{t.categoria.nome}</td>
@@ -52,14 +57,22 @@ export default function TarefaTable({ tarefas, onEdit, onUpdate }: Props) {
                 >
                   <button
                     onClick={() => onEdit(t)}
-                    className="px-3 py-1 text-sm bg-[#196C84] text-white rounded hover:bg-[#15586B]"
+                    className="
+                px-3 py-1 text-sm 
+                bg-[#196C84] text-white 
+                rounded hover:bg-[#15586B]
+              "
                   >
                     Editar
                   </button>
 
                   <button
                     onClick={() => excluir(t.idTarefa)}
-                    className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+                    className="
+                px-3 py-1 text-sm 
+                bg-red-600 text-white 
+                rounded hover:bg-red-700
+              "
                   >
                     Excluir
                   </button>
@@ -69,6 +82,7 @@ export default function TarefaTable({ tarefas, onEdit, onUpdate }: Props) {
           </tbody>
         </table>
       </div>
+
 
       {selected && (
         <TarefaViewModal tarefa={selected} close={() => setSelected(null)} />

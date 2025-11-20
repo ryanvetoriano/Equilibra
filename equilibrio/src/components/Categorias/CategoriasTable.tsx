@@ -21,7 +21,7 @@ export default function CategoriaTable({ categorias, onEdit, onUpdate }: Props) 
   return (
     <>
       <div className="overflow-x-auto rounded-xl shadow bg-white">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-left border-collapse text-black">
           <thead className="bg-[#02353C] text-white">
             <tr>
               <th className="p-4">Nome</th>
@@ -36,11 +36,11 @@ export default function CategoriaTable({ categorias, onEdit, onUpdate }: Props) 
               <tr
                 key={c.idCategoria}
                 onClick={() => setSelected(c)}
-                className="border-b hover:bg-[#F0F7F8] transition cursor-pointer"
+                className="border-b border-gray-200 hover:bg-[#F0F7F8] transition cursor-pointer"
               >
-                <td className="p-4">{c.nome}</td>
-                <td className="p-4">{c.tipo}</td>
-                <td className="p-4">{c.idCategoria}</td>
+                <td className="p-4 text-black">{c.nome}</td>
+                <td className="p-4 text-black">{c.tipo}</td>
+                <td className="p-4 text-black">{c.idCategoria}</td>
 
                 <td
                   className="p-4 flex gap-3 justify-center"

@@ -54,7 +54,7 @@ export default function Tarefas() {
 
                 <button
                     onClick={abrirCriacao}
-                    className="px-5 py-2 bg-[#196C84] text-white rounded-lg shadow hover:bg-[#15586B] transition"
+                    className="px-5 py-2 bg-[var(--surface)] text-white rounded-lg shadow hover:bg-[#15586B] transition"
                 >
                     + Nova Tarefa
                 </button>

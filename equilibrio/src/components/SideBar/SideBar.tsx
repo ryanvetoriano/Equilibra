@@ -9,10 +9,23 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-64 bg-[#02353C] text-white flex flex-col py-8 px-6 shadow-xl">
-      <h1 className="text-3xl font-bold mb-10 text-[#3FD0C9]">Equilibra</h1>
+    <aside 
+      className="
+        w-64 min-h-screen flex flex-col py-8 px-6 shadow-2xl
+        transition-colors duration-300
+      "
+      style={{ 
+        backgroundColor: "var(--surface)", 
+        color: "var(--text-primary)"
+      }}
+    >
+      <h1 
+        className="text-3xl font-bold mb-10 transition-colors duration-300"
+      >
+        Equilibra
+      </h1>
 
-      <nav className="flex flex-col gap-4 text-lg font-medium">
+      <nav className="flex flex-col gap-3 text-lg font-medium flex-1">
         <NavItem to="/home" label="Dashboard" />
         <NavItem to="/tarefas" label="Tarefas" />
         <NavItem to="/categorias" label="Categorias" />
@@ -24,7 +37,15 @@ export default function Sidebar() {
 
       <button
         onClick={handleLogout}
-        className="mt-auto bg-[#2EAF7D] py-3 rounded-lg font-semibold hover:bg-[#3FD0C9] transition"
+        className="
+          mt-auto py-3 rounded-lg font-bold shadow-md
+          transition-all duration-300
+          hover:opacity-90 active:scale-95
+        "
+        style={{
+          backgroundColor: "var(--accent)",
+          color: "var(--text-on-accent)"
+        }}
       >
         Sair
       </button>
@@ -37,12 +58,21 @@ function NavItem({ to, label }: { to: string; label: string }) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `p-3 rounded-lg transition ${
-          isActive
-            ? "bg-[#2EAF7D] text-black font-bold"
-            : "hover:bg-[#3FD0C9] hover:text-black"
-        }`
+        `
+        px-4 py-3 rounded-lg transition-all duration-300
+        /* Lógica de Hover: Fundo e Cor do Texto mudam para Accent */
+        hover:bg-[var(--accent)] hover:text-[var(--text-on-accent)]
+        ${isActive 
+          ? "font-bold shadow-md scale-105" 
+          : ""
+        }
+        `
       }
+     
+      style={({ isActive }) => isActive ? {
+        backgroundColor: "var(--accent)",
+        color: "var(--text-on-accent)"
+      } : undefined}
     >
       {label}
     </NavLink>

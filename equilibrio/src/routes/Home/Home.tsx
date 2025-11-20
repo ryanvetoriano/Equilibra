@@ -17,7 +17,9 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const resTasks = await fetch(`http://localhost:8080/tarefas/usuario/${user.idUsuario}`);
+        const resTasks = await fetch(
+          `http://localhost:8080/tarefas/usuario/${user.idUsuario}`
+        );
         const resCats = await fetch("http://localhost:8080/categorias");
 
         const tasks = await resTasks.json();
@@ -36,7 +38,11 @@ export default function Home() {
   }, []);
 
   if (loading)
-    return <p className="text-center text-xl text-[#02353C]">Carregando dashboard...</p>;
+    return (
+      <p className="text-center text-xl text-[var(--text-primary)]">
+        Carregando dashboard...
+      </p>
+    );
 
   const totalTarefas = tarefas.length;
   const totalMinutos = tarefas.reduce((sum, t) => sum + t.duracaoMin, 0);
@@ -55,7 +61,9 @@ export default function Home() {
 
   const categoriasUsadas = categorias.map((cat) => ({
     categoria: cat.nome,
-    total: tarefas.filter((t) => t.categoria.idCategoria === cat.idCategoria).length,
+    total: tarefas.filter(
+      (t) => t.categoria.idCategoria === cat.idCategoria
+    ).length,
   }));
 
   const timeline = tarefas.map((t) => ({
@@ -64,8 +72,8 @@ export default function Home() {
   }));
 
   return (
-    <div className="flex flex-col gap-8">
-      <h1 className="text-3xl font-bold text-[#02353C]">Dashboard</h1>
+    <div className="flex flex-col gap-8 text-[var(--text-primary)]">
+      <h1 className="text-3xl font-bold">Dashboard</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <DashboardCard title="Tarefas hoje" value={tarefasHoje} />

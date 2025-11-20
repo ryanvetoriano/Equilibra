@@ -13,13 +13,20 @@ export default function MainLayout() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-[#C1F6ED]">
+    <div className="
+      flex 
+      min-h-screen 
+      bg-[var(--background)]
+      text-[var(--text-primary)]
+      transition-colors
+    ">
       <Sidebar />
 
-      <main className="flex-1 flex flex-col">
+      <main className="flex-1 flex flex-col bg-[var(--background)] transition-colors">
+        
         <Header />
 
-        <section className="p-8 flex-1">
+        <section className="p-8 flex-1 bg-[var(--background)] transition-colors">
           <Outlet />
         </section>
 
