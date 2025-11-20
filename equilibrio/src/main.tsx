@@ -15,6 +15,7 @@ import Perfil from "./routes/Perfil/index.tsx";
 import Categorias from "./routes/Categorias/index.tsx";
 import Integrantes from "./routes/Integrantes/index.tsx";
 import FAQ from "./routes/Faq/index.tsx";
+import About from "./routes/About/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,8 @@ const router = createBrowserRouter([
           { path: "/categorias", element: <Categorias /> },
           { path: "/perfil", element: <Perfil /> },
           { path: "/integrantes", element: <Integrantes/>},
-          { path: "/faq", element: <FAQ/>}
+          { path: "/faq", element: <FAQ/>},
+          { path: "/about", element: <About/>}
         ],
       },
     ],
