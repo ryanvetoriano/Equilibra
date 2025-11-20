@@ -5,86 +5,88 @@ export default function Footer() {
     <footer
       className="
         w-full 
-        bg-gradient-to-r from-[#02353C] to-[#196C84]
-        text-white
-        py-4 px-6
-        rounded-t-3xl
-        shadow-lg
+        bg-[var(--surface)]
+        text-[var(--text-primary)]
+        pt-10 pb-6 px-6
+        rounded-t-[2.5rem]
+        shadow-xl
+        transition-colors duration-300
+        mt-auto
       "
     >
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
 
-        <div>
-          <h2 className="text-2xl font-bold tracking-wide bg-gradient-to-r from-[#3FD0C9] to-[#2EAF7D] bg-clip-text text-transparent">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold tracking-tight text-[var(--text-primary)]">
             Equilibra
           </h2>
-          <p className="mt-2 text-sm text-white/80 leading-relaxed">
+
+          <p className="text-sm text-[var(--text-secondary)] leading-relaxed max-w-xs">
             Aplicação feita para ajudar você a organizar tarefas, melhorar produtividade
-            e alcançar equilíbrio entre vida pessoal e profissional.
+            e alcançar o equilíbrio ideal.
           </p>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-semibold mb-1 text-[#3FD0C9]">Navegação</h3>
+        <div className="flex flex-col gap-3">
+          <h3 className="text-sm font-bold uppercase tracking-wider mb-1 opacity-80">
+            Navegação
+          </h3>
 
-          <Link to="/home" className="hover:text-[#3FD0C9] transition">Dashboard</Link>
-          <Link to="/tarefas" className="hover:text-[#3FD0C9] transition">Tarefas</Link>
-          <Link to="/categorias" className="hover:text-[#3FD0C9] transition">Categorias</Link>
-          <Link to="/perfil" className="hover:text-[#3FD0C9] transition">Meu Perfil</Link>
+          <nav className="flex flex-col gap-2 text-sm font-medium">
+            <Link to="/home" className="hover:text-[var(--accent)] transition-colors w-fit">Dashboard</Link>
+            <Link to="/tarefas" className="hover:text-[var(--accent)] transition-colors w-fit">Tarefas</Link>
+            <Link to="/categorias" className="hover:text-[var(--accent)] transition-colors w-fit">Categorias</Link>
+            <Link to="/perfil" className="hover:text-[var(--accent)] transition-colors w-fit">Meu Perfil</Link>
+          </nav>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-3 text-[#3FD0C9]">Contato & Redes</h3>
+          <h3 className="text-sm font-bold uppercase tracking-wider mb-4 opacity-80">
+            Contato & Redes
+          </h3>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 text-sm">
 
-            <Link
-              to="https://github.com/ryanvetoriano/Equilibra"
+            <a
+              href="https://github.com/ryanvetoriano/Equilibra"
               target="_blank"
-              className="flex items-center gap-2 hover:opacity-80 transition"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-[var(--accent)] transition-colors group"
             >
-              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
-                <path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 00-1.34-1.76c-1.1-.75.08-.74.08-.74a2.52 2.52 0 011.84 1.24 2.56 2.56 0 003.47 1 2.54 2.54 0 01.76-1.6c-2.67-.3-5.47-1.34-5.47-5.94a4.66 4.66 0 011.24-3.24 4.3 4.3 0 01.12-3.19s1-.32 3.3 1.23a11.38 11.38 0 016 0c2.28-1.55 3.28-1.23 3.28-1.23a4.3 4.3 0 01.12 3.19 4.66 4.66 0 011.24 3.24c0 4.61-2.8 5.63-5.47 5.93A2.86 2.86 0 0113.5 21v2.79c0 .32.21.69.82.58A12 12 0 0012 .5z"/>
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
               </svg>
               Github do Projeto
-            </Link>
+            </a>
 
-            <Link
-              to="mailto:vetorianosilva@gmail.com"
-              className="flex items-center gap-2 hover:opacity-80 transition"
-            >
-              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
-                <path d="M20 4H4a2 2 0 00-2 2v1l10 6 10-6V6a2 2 0 00-2-2zm0 4.2l-8.4 5.1a1 1 0 01-1.2 0L4 8.2V18a2 2 0 002 2h12a2 2 0 002-2z"/>
-              </svg>
-              vetorianosilva@gmail.com - Ryan
-            </Link>
-
-            <Link
-              to="mailto:pietrosalomao1@gmail.com"
-              className="flex items-center gap-2 hover:opacity-80 transition"
-            >
-              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
-                <path d="M20 4H4a2 2 0 00-2 2v1l10 6 10-6V6a2 2 0 00-2-2zm0 4.2l-8.4 5.1a1 1 0 01-1.2 0L4 8.2V18a2 2 0 002 2h12a2 2 0 002-2z"/>
-              </svg>
-              pietrosalomao1@gmail.com - Pietro
-            </Link>
-
-            <Link
-              to="mailto:rm564002@fiap.com.br"
-              className="flex items-center gap-2 hover:opacity-80 transition"
-            >
-              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
-                <path d="M20 4H4a2 2 0 00-2 2v1l10 6 10-6V6a2 2 0 00-2-2zm0 4.2l-8.4 5.1a1 1 0 01-1.2 0L4 8.2V18a2 2 0 002 2h12a2 2 0 002-2z"/>
-              </svg>
-              rm564002@fiap.com.br - Raul
-            </Link>
+            <EmailLink email="vetorianosilva@gmail.com" name="Ryan" />
+            <EmailLink email="pietrosalomao1@gmail.com" name="Pietro" />
+            <EmailLink email="rm564002@fiap.com.br" name="Raul" />
+            
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/20 mt-8 pt-4 text-center text-sm text-white/70">
+      <div 
+        className="border-t mt-8 pt-6 text-center text-xs text-[var(--text-secondary)]"
+        style={{ borderColor: "var(--border-subtle)" }}
+      >
         © {new Date().getFullYear()} Equilibra — Todos os direitos reservados.
       </div>
     </footer>
+  );
+}
+
+function EmailLink({ email, name }: { email: string, name: string }) {
+  return (
+    <a
+      href={`mailto:${email}`}
+      className="flex items-center gap-2 hover:text-[var(--accent)] transition-colors"
+    >
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+      <span>{email} <span className="opacity-60 ml-1">— {name}</span></span>
+    </a>
   );
 }

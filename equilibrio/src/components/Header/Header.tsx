@@ -1,7 +1,23 @@
+import ThemeToggleButton from "../../context/ThemeToggleButton";
+
 export default function Header() {
   return (
-    <header className="w-full bg-white shadow-md px-8 py-4 flex items-center justify-between">
-      <h2 className="text-2xl font-semibold text-[#02353C]">Área do Usuário</h2>
+    <header
+      className="
+    flex justify-between items-center 
+    h-[15vh] px-6 
+    bg-[var(--surface)] 
+    text-[var(--text-primary)]
+    shadow 
+    rounded-b-3xl
+    transition-colors
+  "
+    >
+      <h1 className="text-3xl font-bold">
+        Equilibra
+      </h1>
+
+      <ThemeToggleButton />
     </header>
   );
 }
