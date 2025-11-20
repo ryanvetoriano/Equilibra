@@ -16,11 +16,9 @@ export default function CategoriaForm({ close, categoria, onSave }: Props) {
         e.preventDefault();
         setError("");
 
-        // 🔍 Buscar todas categorias
         const res = await fetch("http://localhost:8080/categorias");
         const todas: TipoCategoria[] = await res.json();
 
-        // ❗ Verificar duplicação
         const nomeDuplicado = todas.some(
             (c) =>
                 c.nome.toLowerCase() === nome.toLowerCase() &&
@@ -54,35 +52,35 @@ export default function CategoriaForm({ close, categoria, onSave }: Props) {
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50">
             <form
                 onSubmit={salvar}
-                className="bg-white p-8 rounded-xl w-[380px] shadow-lg flex flex-col gap-4 border border-gray-200"
+                className="bg-white dark:bg-[var(--surface)] text-[#02353C] dark:text-white p-8 rounded-xl w-[380px] shadow-lg flex flex-col gap-4 border border-gray-200 dark:border-[var(--border-subtle)]"
             >
-                <h2 className="text-xl font-semibold text-[#02353C]">
+                <h2 className="text-xl font-semibold text-[#02353C] dark:text-[var(--accent)]">
                     {categoria ? "Editar Categoria" : "Nova Categoria"}
                 </h2>
 
                 {error && (
-                    <div className="p-3 bg-red-200 text-red-800 rounded-md text-sm text-center">
+                    <div className="p-3 bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200 rounded-md text-sm text-center">
                         {error}
                     </div>
                 )}
 
-                <label className="text-sm font-medium text-[#02353C]">Nome</label>
+                <label className="text-sm font-medium">Nome</label>
                 <input
                     type="text"
                     placeholder="Ex: Reunião"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
-                    className="p-3 border rounded"
+                    className="p-3 border rounded bg-[var(--background)] text-[var(--text-primary)] border-[var(--border-subtle)]"
                     required
                 />
 
-                <label className="text-sm font-medium text-[#02353C]">Tipo</label>
+                <label className="text-sm font-medium">Tipo</label>
                 <input
                     type="text"
                     placeholder="Ex: TRABALHO / PESSOAL"
                     value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
-                    className="p-3 border rounded"
+                    className="p-3 border rounded bg-[var(--background)] text-[var(--text-primary)] border-[var(--border-subtle)]"
                     required
                 />
 
@@ -90,19 +88,20 @@ export default function CategoriaForm({ close, categoria, onSave }: Props) {
                     <button
                         type="button"
                         onClick={close}
-                        className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
+                        className="px-4 py-2 rounded bg-gray-300 dark:bg-gray-600 text-black dark:text-white hover:bg-gray-400 dark:hover:bg-gray-500"
                     >
                         Cancelar
                     </button>
 
                     <button
                         type="submit"
-                        className="px-4 py-2 rounded bg-[#196C84] text-white hover:bg-[#15586B]"
+                        className="px-4 py-2 rounded bg-[#196C84] dark:bg-[var(--accent)] text-white dark:text-[var(--text-on-accent)] hover:bg-[#15586B] dark:hover:opacity-90"
                     >
                         Salvar
                     </button>
                 </div>
             </form>
         </div>
+
     );
 }
