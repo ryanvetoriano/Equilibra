@@ -14,6 +14,7 @@ import Tarefas from "./routes/Tarefas/Tarefas.tsx";
 import Perfil from "./routes/Perfil/index.tsx";
 import Categorias from "./routes/Categorias/index.tsx";
 import Integrantes from "./routes/Integrantes/index.tsx";
+import FAQ from "./routes/Faq/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
           { path: "/tarefas", element: <Tarefas /> },
           { path: "/categorias", element: <Categorias /> },
           { path: "/perfil", element: <Perfil /> },
-          { path: "/integrantes", element: <Integrantes/>}
+          { path: "/integrantes", element: <Integrantes/>},
+          { path: "/faq", element: <FAQ/>}
         ],
       },
     ],
