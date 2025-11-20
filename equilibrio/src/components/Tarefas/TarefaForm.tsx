@@ -53,67 +53,58 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50">
             <form
                 onSubmit={salvar}
-                className="bg-white p-8 rounded-xl w-[380px] shadow-lg flex flex-col gap-4 border border-gray-200"
+                className="
+                    p-8 rounded-xl w-[380px] shadow-lg 
+                    bg-[var(--surface)] 
+                    border border-[var(--border-subtle)]
+                    text-[var(--text-primary)]
+                    flex flex-col gap-4
+                "
             >
-                <h2 className="text-xl font-semibold text-[#02353C]">
+                <h2 className="text-xl font-semibold text-[var(--accent)]">
                     {tarefa ? "Editar Tarefa" : "Nova Tarefa"}
                 </h2>
 
-                {/* TÍTULO */}
-                <label className="text-sm font-medium text-[#02353C]">
-                    Título da tarefa
-                </label>
+                <label className="text-sm font-medium">Título da tarefa</label>
                 <input
                     type="text"
                     placeholder="Ex: Reunião com equipe"
                     value={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
-                    className="p-3 border rounded"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
                     required
                 />
 
-                {/* DESCRIÇÃO */}
-                <label className="text-sm font-medium text-[#02353C]">
-                    Descrição
-                </label>
+                <label className="text-sm font-medium">Descrição</label>
                 <textarea
                     placeholder="Descrição opcional..."
                     value={descricao}
                     onChange={(e) => setDescricao(e.target.value)}
-                    className="p-3 border rounded"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
                 />
 
-                {/* DURAÇÃO */}
-                <label className="text-sm font-medium text-[#02353C]">
-                    Duração (em minutos)
-                </label>
+                <label className="text-sm font-medium">Duração (em minutos)</label>
                 <input
                     type="number"
                     placeholder="Ex: 45"
                     value={duracaoMin}
                     onChange={(e) => setDuracaoMin(Number(e.target.value))}
-                    className="p-3 border rounded"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
                     required
                 />
 
-                {/* DATA */}
-                <label className="text-sm font-medium text-[#02353C]">
-                    Data da tarefa
-                </label>
+                <label className="text-sm font-medium">Data da tarefa</label>
                 <input
                     type="date"
                     value={dataTarefa}
                     onChange={(e) => setDataTarefa(e.target.value)}
-                    className="p-3 border rounded"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
                     required
                 />
 
-                {/* CATEGORIA */}
-                <label className="text-sm font-medium text-[#02353C]">
-                    Categoria
-                </label>
+                <label className="text-sm font-medium">Categoria</label>
                 <select
-                    className="p-3 border rounded"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
                     value={categoriaId}
                     onChange={(e) => setCategoriaId(Number(e.target.value))}
                 >
@@ -124,19 +115,18 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
                     ))}
                 </select>
 
-                {/* BOTÕES */}
                 <div className="flex justify-end gap-3 mt-4">
                     <button
                         type="button"
                         onClick={close}
-                        className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
+                        className="px-4 py-2 rounded bg-gray-300 dark:bg-gray-600 text-black dark:text-white"
                     >
                         Cancelar
                     </button>
 
                     <button
                         type="submit"
-                        className="px-4 py-2 rounded bg-[#196C84] text-white hover:bg-[#15586B]"
+                        className="px-4 py-2 rounded bg-[var(--accent)] text-[var(--text-on-accent)] hover:opacity-90"
                     >
                         Salvar
                     </button>
@@ -145,3 +135,4 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
         </div>
     );
 }
+
