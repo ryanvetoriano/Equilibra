@@ -50,8 +50,8 @@ export default function Tarefas() {
     return (
         <div className="w-full min-w-0">
             {/* Header Responsivo */}
-            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-[#02353C]">
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6 text-[var(--text-primary)]">
+                <h1 className="text-2xl sm:text-3xl font-bold">
                     Tarefas
                 </h1>
 

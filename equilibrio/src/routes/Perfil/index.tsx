@@ -44,6 +44,7 @@ export default function Perfil() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
+
   async function deleteAccount() {
     try {
       const response = await fetch(
@@ -60,7 +61,6 @@ export default function Perfil() {
         setAlertMsg("");
         navigate("/");
       }, 1500);
-
     } catch (err) {
       console.error(err);
       setAlertMsg("Erro ao excluir conta.");
@@ -116,7 +116,6 @@ export default function Perfil() {
 
       setAlertMsg("Informações atualizadas com sucesso!");
       setTimeout(() => setAlertMsg(""), 3000);
-
     } catch (err) {
       console.error("Erro ao salvar alterações:", err);
       setAlertMsg("Erro ao atualizar. Tente novamente.");
@@ -130,9 +129,9 @@ export default function Perfil() {
   const totalMinutos = tarefas.reduce((sum, t) => sum + t.duracaoMin, 0);
   const hoje = new Date();
 
-  const hojeStr = hoje.toISOString().split("T")[0]; // "2025-11-20"
+  const hojeStr = hoje.toISOString().split("T")[0];
   const tarefasHoje = tarefas.filter(
-    t => t.dataTarefa.split("T")[0] === hojeStr
+    (t) => t.dataTarefa.split("T")[0] === hojeStr
   ).length;
 
   return (
@@ -148,71 +147,81 @@ export default function Perfil() {
         </div>
       )}
 
-      <main className="p-6 flex flex-col gap-8 text-[#02353C]">
-        <h1 className="text-3xl font-bold">Meu Perfil</h1>
+      <main className="p-6 max-w-5xl mx-auto flex flex-col gap-8">
+        <h1 className="text-3xl font-bold text-center md:text-left text-[var(--text-primary)]">
+          Meu Perfil
+        </h1>
 
-        <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
+        <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col md:flex-row md:items-center gap-6 text-[var(--equilibra-dark)]">
 
+          {/* Avatar */}
           <div
-            className="w-28 h-28 rounded-full bg-gradient-to-br from-[#2EAF7D] to-[#3FD0C9]
-            flex items-center justify-center text-white text-4xl font-bold"
+            className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-[#2EAF7D] to-[#3FD0C9]
+            flex items-center justify-center text-white text-3xl md:text-4xl font-bold mx-auto md:mx-0"
           >
             {user.nome?.charAt(0) || "U"}
           </div>
 
-          <div className="flex-1">
+          {/* Infos e Form */}
+          <div className="flex-1 w-full">
 
             {!editMode ? (
               <>
-                <p className="text-xl font-semibold">{user.nome}</p>
-                <p className="opacity-70">{user.email}</p>
-                <p className="opacity-70 mt-1">ID: {user.idUsuario}</p>
+                <p className="text-xl font-semibold text-center md:text-left">
+                  {user.nome}
+                </p>
+                <p className="opacity-70 text-center md:text-left">{user.email}</p>
+                <p className="opacity-70 mt-1 text-center md:text-left">
+                  ID: {user.idUsuario}
+                </p>
 
-                <button
-                  onClick={() => setEditMode(true)}
-                  className="mt-4 px-5 py-2 rounded-full text-white 
-                  bg-gradient-to-r from-[#2EAF7D] to-[#3FD0C9] 
-                  hover:opacity-90 transition"
-                >
-                  Editar Perfil
-                </button>
+                <div className="flex flex-col sm:flex-row sm:justify-start gap-3 mt-4">
 
-                <button
-                  onClick={() => setShowDeleteModal(true)}
-                  className="mt-4 ml-2 px-5 py-2 rounded-full bg-red-500 text-white 
-                  hover:bg-red-600 transition"
-                >
-                  Excluir Conta
-                </button>
+                  <button
+                    onClick={() => setEditMode(true)}
+                    className="px-5 py-2 rounded-full text-white 
+                    bg-gradient-to-r from-[#2EAF7D] to-[#3FD0C9]
+                    hover:opacity-90 transition w-full sm:w-auto"
+                  >
+                    Editar Perfil
+                  </button>
 
+                  <button
+                    onClick={() => setShowDeleteModal(true)}
+                    className="px-5 py-2 rounded-full bg-red-500 text-white 
+                    hover:bg-red-600 transition w-full sm:w-auto"
+                  >
+                    Excluir Conta
+                  </button>
+                </div>
               </>
             ) : (
               <>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 w-full">
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-full">
                     <label className="text-sm font-semibold mb-1">Nome completo</label>
                     <input
                       name="nome"
                       value={form.nome}
                       onChange={handleChange}
                       className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9]
-                      focus:outline-none focus:ring-2 focus:ring-[#2EAF7D]"
+                      w-full focus:outline-none focus:ring-2 focus:ring-[#2EAF7D]"
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-full">
                     <label className="text-sm font-semibold mb-1">E-mail</label>
                     <input
                       name="email"
                       value={form.email}
                       onChange={handleChange}
                       className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9]
-                      focus:outline-none focus:ring-2 focus:ring-[#2EAF7D]"
+                      w-full focus:outline-none focus:ring-2 focus:ring-[#2EAF7D]"
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col w-full">
                     <label className="text-sm font-semibold mb-1">Senha</label>
                     <input
                       type="password"
@@ -220,26 +229,25 @@ export default function Perfil() {
                       value={form.senha}
                       onChange={handleChange}
                       className="p-3 rounded-xl bg-[#C1F6ED] border border-[#3FD0C9]
-                      focus:outline-none focus:ring-2 focus:ring-[#2EAF7D]"
+                      w-full focus:outline-none focus:ring-2 focus:ring-[#2EAF7D]"
                     />
                   </div>
-
                 </div>
 
-                <div className="mt-4 flex gap-3">
+                <div className="mt-4 flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={saveChanges}
                     disabled={saving}
                     className="px-5 py-2 rounded-full text-white bg-gradient-to-r 
                     from-[#2EAF7D] to-[#3FD0C9] hover:opacity-90 transition 
-                    disabled:opacity-50"
+                    disabled:opacity-50 w-full sm:w-auto"
                   >
                     {saving ? "Salvando..." : "Salvar"}
                   </button>
 
                   <button
                     onClick={() => setEditMode(false)}
-                    className="px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+                    className="px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition w-full sm:w-auto"
                   >
                     Cancelar
                   </button>
@@ -249,39 +257,42 @@ export default function Perfil() {
           </div>
         </div>
 
+        {/* Resumo */}
         <section>
-          <h2 className="text-2xl font-semibold mb-4">Resumo da Atividade</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-center md:text-left text-[var(--text-primary)]">
+            Resumo da Atividade
+          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-[var(--equilibra-dark)]">
 
-            <div className="bg-white rounded-2xl shadow-md p-6">
+            <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <p className="text-lg font-semibold">Tarefas Hoje</p>
               <p className="text-4xl font-bold mt-2 text-[#2EAF7D]">
                 {tarefasHoje}
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-md p-6">
+            <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <p className="text-lg font-semibold">Tarefas Totais</p>
               <p className="text-4xl font-bold mt-2 text-[#2EAF7D]">
                 {totalTarefas}
               </p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-md p-6">
+            <div className="bg-white rounded-2xl shadow-md p-6 text-center">
               <p className="text-lg font-semibold">Total de Minutos</p>
               <p className="text-3xl font-bold mt-2 text-[#2EAF7D]">
                 {totalMinutos} min
               </p>
             </div>
-
           </div>
         </section>
       </main>
 
+      {/* Modal */}
       {showDeleteModal && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white w-[90%] max-w-md p-6 rounded-2xl shadow-xl border border-[#3FD0C9]/40 animate-fade">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white w-full max-w-md p-6 rounded-2xl shadow-xl border border-[#3FD0C9]/40 animate-fade">
 
             <h2 className="text-xl font-bold text-[#02353C] text-center">
               Tem certeza que deseja excluir sua conta?
@@ -291,10 +302,11 @@ export default function Perfil() {
               Esta ação é <strong>permanente</strong> e não poderá ser desfeita.
             </p>
 
-            <div className="flex justify-center gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="px-5 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+                className="px-5 py-2 rounded-full bg-gradient-to-r 
+                    from-[#2EAF7D] to-[#3FD0C9] transition w-full sm:w-auto"
               >
                 Cancelar
               </button>
@@ -304,12 +316,11 @@ export default function Perfil() {
                   setShowDeleteModal(false);
                   deleteAccount();
                 }}
-                className="px-5 py-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition"
+                className="px-5 py-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition w-full sm:w-auto"
               >
                 Sim, excluir
               </button>
             </div>
-
           </div>
         </div>
       )}
