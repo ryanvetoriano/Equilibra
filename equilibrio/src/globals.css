@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+:root {
+  --equilibra-dark:   #02353C;
+  --equilibra-dark2:  #196C84;
+  --equilibra-light1: #3FD0C9;
+  --equilibra-light2: #3d9e76;
+  --equilibra-bg:     #a4cebd;
+}
+
+:root {
+  --background:      var(--equilibra-bg);
+  --surface:         var(--equilibra-light2);
+  --text-primary:    var(--equilibra-dark); 
+  
+  --accent:          var(--equilibra-dark2); 
+  --text-on-accent:  white; 
+
+  --text-secondary:  rgba(2, 53, 60, 0.7); 
+  --border-subtle:   rgba(2, 53, 60, 0.1); 
+}
+
+html.dark {
+  --background:      var(--equilibra-dark2);
+  --surface:         var(--equilibra-dark);
+  --text-primary:    white; 
+
+  --accent:          var(--equilibra-light2);
+  --text-on-accent:  var(--equilibra-dark); 
+
+  --text-secondary:  rgba(255, 255, 255, 0.6); 
+  --border-subtle:   rgba(255, 255, 255, 0.15);
+}
+
+html {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
