@@ -8,14 +8,16 @@ export default function ThemeToggleButton() {
     <button
       onClick={toggleTheme}
       className="
-        px-4 py-2 rounded-full font-semibold shadow-lg
-        transform active:scale-95 hover:opacity-90
+        px-4 py-2 md:px-5 md:py-2.5
+        rounded-full font-semibold
+        shadow-md md:shadow-lg
+        text-sm md:text-base
         transition-all duration-300
+        hover:opacity-90 active:scale-95
+        
+        bg-[var(--accent)] 
+        text-[var(--text-on-accent)]
       "
-      style={{
-        backgroundColor: "var(--accent)",
-        color: "var(--text-on-accent)" 
-      }}
     >
       {theme === "light" ? "Modo Escuro" : "Modo Claro"}
     </button>
