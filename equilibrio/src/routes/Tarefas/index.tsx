@@ -49,7 +49,7 @@ export default function Tarefas() {
 
     return (
         <div className="w-full min-w-0">
-=            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6 text-[var(--text-primary)]">
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6 text-[var(--text-primary)]">
                 <h1 className="text-2xl sm:text-3xl font-bold">
                     Tarefas
                 </h1>
@@ -62,7 +62,7 @@ export default function Tarefas() {
                 </button>
             </div>
 
-=            {loading ? (
+            {loading ? (
                 <p className="text-sm opacity-70">Carregando...</p>
             ) : (
                 <div className="overflow-x-auto rounded-lg shadow-sm">
@@ -74,7 +74,7 @@ export default function Tarefas() {
                 </div>
             )}
 
-=            {openModal && (
+            {openModal && (
                 <TarefaForm
                     close={() => setOpenModal(false)}
                     categorias={categorias}
