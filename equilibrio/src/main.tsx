@@ -5,12 +5,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import "./globals.css";
 
-import Error from "./routes/Error/Error.tsx";
-import Login from "./routes/Login/Login.tsx";
-import Register from "./routes/Register/Register.tsx";
-import Home from "./routes/Home/Home.tsx";
+import Error from "./routes/Error/index.tsx";
+import Login from "./routes/Login/index.tsx";
+import Register from "./routes/Register/index.tsx";
+import Home from "./routes/Home/index.tsx";
 import MainLayout from "./layouts/MainLayout.tsx";
-import Tarefas from "./routes/Tarefas/Tarefas.tsx";
+import Tarefas from "./routes/Tarefas/index.tsx";
 import Perfil from "./routes/Perfil/index.tsx";
 import Categorias from "./routes/Categorias/index.tsx";
 import Integrantes from "./routes/Integrantes/index.tsx";
