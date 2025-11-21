@@ -50,12 +50,13 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
     }
 
     return (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 p-4">
             <form
                 onSubmit={salvar}
                 className="
-                    p-8 rounded-xl w-[380px] shadow-lg 
-                    bg-[var(--surface)] 
+                    w-full max-w-[380px]
+                    p-6 sm:p-8 rounded-xl shadow-lg 
+                    bg-[var(--surface)]
                     border border-[var(--border-subtle)]
                     text-[var(--text-primary)]
                     flex flex-col gap-4
@@ -71,7 +72,7 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
                     placeholder="Ex: Reunião com equipe"
                     value={titulo}
                     onChange={(e) => setTitulo(e.target.value)}
-                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)]"
                     required
                 />
 
@@ -80,7 +81,7 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
                     placeholder="Descrição opcional..."
                     value={descricao}
                     onChange={(e) => setDescricao(e.target.value)}
-                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)]"
                 />
 
                 <label className="text-sm font-medium">Duração (em minutos)</label>
@@ -89,7 +90,7 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
                     placeholder="Ex: 45"
                     value={duracaoMin}
                     onChange={(e) => setDuracaoMin(Number(e.target.value))}
-                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)]"
                     required
                 />
 
@@ -98,13 +99,13 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
                     type="date"
                     value={dataTarefa}
                     onChange={(e) => setDataTarefa(e.target.value)}
-                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)]"
                     required
                 />
 
                 <label className="text-sm font-medium">Categoria</label>
                 <select
-                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)] text-[var(--text-primary)]"
+                    className="p-3 rounded bg-[var(--background)] border border-[var(--border-subtle)]"
                     value={categoriaId}
                     onChange={(e) => setCategoriaId(Number(e.target.value))}
                 >
@@ -126,7 +127,7 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
 
                     <button
                         type="submit"
-                        className="px-4 py-2 rounded bg-[var(--accent)] text-[var(--text-on-accent)] hover:opacity-90"
+                        className="px-4 py-2 rounded bg-[var(--accent)] text-[var(--text-on-accent)] hover:opacity-90 transition"
                     >
                         Salvar
                     </button>
@@ -135,4 +136,3 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
         </div>
     );
 }
-

@@ -11,13 +11,17 @@ export default function MainLayout() {
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (!user) navigate("/");
-  }, []);
+  }, [navigate]);
 
   return (
-    <div className="flex min-h-screen bg-[var(--background)] text-[var(--text-primary)] transition-colors">
+    <div className="flex min-h-screen bg-[var(--background)] text-[var(--text-primary)] transition-colors overflow-hidden">
 
-      <Sidebar />
+      {/* Sidebar Desktop */}
+      <div className="hidden md:flex">
+        <Sidebar />
+      </div>
 
+      {/* Sidebar Mobile */}
       {isMobileMenuOpen && (
         <>
           <div
@@ -31,14 +35,14 @@ export default function MainLayout() {
         </>
       )}
 
-      <main className="flex-1 flex flex-col bg-[var(--background)] transition-colors w-full">
+      <main className="flex-1 flex flex-col w-full min-w-0 bg-[var(--background)] transition-colors">
 
         <Header
-          onToggleMobileMenu={() => setIsMobileMenuOpen(prev => !prev)}
+          onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
           isMobileMenuOpen={isMobileMenuOpen}
         />
 
-        <section className="p-6 sm:p-8 flex-1 w-full">
+        <section className="p-4 sm:p-6 md:p-8 flex-1 w-full min-w-0">
           <Outlet />
         </section>
 
