@@ -34,8 +34,8 @@ export default function TarefaForm({ close, categorias, usuario, tarefa, onSave 
         };
 
         const url = tarefa
-            ? `http://localhost:8080/tarefas/${tarefa.idTarefa}`
-            : `http://localhost:8080/tarefas`;
+            ? `https://equilibra-8yr9.onrender.com/tarefas/${tarefa.idTarefa}`
+            : `https://equilibra-8yr9.onrender.com/tarefas`;
 
         const method = tarefa ? "PUT" : "POST";
 

@@ -16,7 +16,7 @@ export default function Register() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:8080/usuarios");
+      const res = await fetch("https://equilibra-8yr9.onrender.com/usuarios");
       const usuarios: User[] = await res.json();
 
       if (usuarios.some((u) => u.email === email)) {
@@ -35,7 +35,7 @@ export default function Register() {
         senha,
       };
 
-      const response = await fetch("http://localhost:8080/usuarios", {
+      const response = await fetch("https://equilibra-8yr9.onrender.com/usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novoUsuario),

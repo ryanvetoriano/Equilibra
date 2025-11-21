@@ -29,7 +29,7 @@ export default function Perfil() {
 
       try {
         const resTasks = await fetch(
-          `http://localhost:8080/tarefas/usuario/${user.idUsuario}`
+          `https://equilibra-8yr9.onrender.com/tarefas/usuario/${user.idUsuario}`
         );
         const dataTasks = await resTasks.json();
         setTarefas(dataTasks);
@@ -52,7 +52,7 @@ export default function Perfil() {
     try {
       await Promise.all(
         tarefas.map((t) =>
-          fetch(`http://localhost:8080/tarefas/${t.idTarefa}`, { method: "DELETE" })
+          fetch(`https://equilibra-8yr9.onrender.com/tarefas/${t.idTarefa}`, { method: "DELETE" })
         )
       );
 
@@ -75,7 +75,7 @@ export default function Perfil() {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/usuarios/${user.idUsuario}`,
+        `https://equilibra-8yr9.onrender.com/usuarios/${user.idUsuario}`,
         { method: "DELETE" }
       );
 
@@ -100,7 +100,7 @@ export default function Perfil() {
     setSaving(true);
 
     try {
-      const resUsers = await fetch("http://localhost:8080/usuarios");
+      const resUsers = await fetch("https://equilibra-8yr9.onrender.com/usuarios");
       const allUsers: User[] = await resUsers.json();
 
       const emailDuplicado = allUsers.find(
@@ -126,7 +126,7 @@ export default function Perfil() {
       const updatedUser: User = { ...user, ...form };
 
       const response = await fetch(
-        `http://localhost:8080/usuarios/${user.idUsuario}`,
+        `https://equilibra-8yr9.onrender.com/usuarios/${user.idUsuario}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

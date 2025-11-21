@@ -11,7 +11,7 @@ export default function Categorias() {
 
   async function carregarCategorias() {
     try {
-      const res = await fetch("http://localhost:8080/categorias");
+      const res = await fetch("https://equilibra-8yr9.onrender.com/categorias");
       const data = await res.json();
       setCategorias(data);
     } catch (e) {
@@ -37,7 +37,6 @@ export default function Categorias() {
 
   return (
     <main className="w-full min-w-0">
-      {/* Header Responsivo */}
       <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6 text-[var(--text-primary)]">
         <h1 className="text-2xl sm:text-3xl font-bold">
           Categorias

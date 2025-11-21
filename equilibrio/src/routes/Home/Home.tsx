@@ -18,9 +18,9 @@ export default function Home() {
     async function fetchData() {
       try {
         const resTasks = await fetch(
-          `http://localhost:8080/tarefas/usuario/${user.idUsuario}`
+          `https://equilibra-8yr9.onrender.com/tarefas/usuario/${user.idUsuario}`
         );
-        const resCats = await fetch("http://localhost:8080/categorias");
+        const resCats = await fetch("https://equilibra-8yr9.onrender.com/categorias");
 
         const tasks = await resTasks.json();
         const cats = await resCats.json();

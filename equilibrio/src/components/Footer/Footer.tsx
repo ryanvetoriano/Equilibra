@@ -16,7 +16,6 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-        {/* LOGO + DESCRIÇÃO */}
         <div className="space-y-4 text-center md:text-left">
           <h2 className="text-3xl font-bold tracking-tight">
             Equilibra
@@ -28,7 +27,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* LINKS DE NAVEGAÇÃO */}
         <div className="flex flex-col gap-3 text-center md:text-left">
           <h3 className="text-sm font-bold uppercase tracking-wider mb-1 opacity-80">
             Navegação
@@ -42,7 +40,6 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* CONTATOS */}
         <div className="text-center md:text-left">
           <h3 className="text-sm font-bold uppercase tracking-wider mb-4 opacity-80">
             Contato & Redes
@@ -50,7 +47,6 @@ export default function Footer() {
 
           <div className="flex flex-col gap-3 text-sm">
 
-            {/* GITHUB */}
             <Link
               to="https://github.com/ryanvetoriano/Equilibra"
               target="_blank"
@@ -66,7 +62,6 @@ export default function Footer() {
               Github do Projeto
             </Link>
 
-            {/* EMAILS */}
             <EmailLink email="vetorianosilva@gmail.com" name="Ryan" />
             <EmailLink email="pietrosalomao1@gmail.com" name="Pietro" />
             <EmailLink email="rm564002@fiap.com.br" name="Raul" />
@@ -75,7 +70,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* COPYRIGHT */}
       <div
         className="border-t mt-8 pt-6 text-center text-xs text-[var(--text-secondary)]"
         style={{ borderColor: "var(--border-subtle)" }}

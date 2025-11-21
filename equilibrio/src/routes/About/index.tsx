@@ -7,10 +7,8 @@ export default function About() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
-        {/* COLUNA ESQUERDA */}
         <div className="flex flex-col gap-8">
 
-          {/* Seção 1 */}
           <section className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-[#3FD0C9]/40 leading-relaxed">
             <h2 className="text-xl sm:text-2xl font-semibold mb-3">O que é o Equilibra?</h2>
 
@@ -26,7 +24,6 @@ export default function About() {
             </p>
           </section>
 
-          {/* Seção 2 */}
           <section className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-[#3FD0C9]/40 leading-relaxed">
             <h2 className="text-xl sm:text-2xl font-semibold mb-3">Objetivo da Aplicação</h2>
 
@@ -42,10 +39,8 @@ export default function About() {
           </section>
         </div>
 
-        {/* COLUNA DIREITA */}
         <div className="flex flex-col gap-8">
 
-          {/* Funcionalidades */}
           <section className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-[#3FD0C9]/40">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4">Funcionalidades</h2>
 
@@ -61,7 +56,6 @@ export default function About() {
             </ul>
           </section>
 
-          {/* Tecnologias */}
           <section className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-[#3FD0C9]/40">
             <h2 className="text-xl sm:text-2xl font-semibold mb-4">Tecnologias Utilizadas</h2>
 

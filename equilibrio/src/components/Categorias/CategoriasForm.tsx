@@ -17,8 +17,7 @@ export default function CategoriasForm({ close, categoria, onSave }: Props) {
     setError("");
 
     try {
-      // Mantive sua lógica de verificação de duplicidade
-      const res = await fetch("http://localhost:8080/categorias");
+      const res = await fetch("https://equilibra-8yr9.onrender.com/categorias");
       const todas: TipoCategoria[] = await res.json();
 
       const nomeDuplicado = todas.some(
@@ -34,8 +33,8 @@ export default function CategoriasForm({ close, categoria, onSave }: Props) {
 
       const payload = { nome, tipo };
       const url = categoria
-        ? `http://localhost:8080/categorias/${categoria.idCategoria}`
-        : `http://localhost:8080/categorias`;
+        ? `https://equilibra-8yr9.onrender.com/categorias/${categoria.idCategoria}`
+        : `https://equilibra-8yr9.onrender.com/categorias`;
       const method = categoria ? "PUT" : "POST";
 
       await fetch(url, {

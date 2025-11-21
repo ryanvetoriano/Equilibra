@@ -13,7 +13,7 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8080/usuarios");
+      const response = await fetch("https://equilibra-8yr9.onrender.com/usuarios");
       if (!response.ok) throw new Error("Erro ao buscar usuários");
 
       const usuarios: User[] = await response.json();

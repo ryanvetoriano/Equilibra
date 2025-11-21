@@ -16,12 +16,10 @@ export default function MainLayout() {
   return (
     <div className="flex min-h-screen bg-[var(--background)] text-[var(--text-primary)] transition-colors overflow-hidden">
 
-      {/* Sidebar Desktop */}
       <div className="hidden md:flex">
         <Sidebar />
       </div>
 
-      {/* Sidebar Mobile */}
       {isMobileMenuOpen && (
         <>
           <div

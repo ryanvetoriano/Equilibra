@@ -2,7 +2,6 @@ import { useState } from "react";
 import type { TipoCategoria } from "../../types/TipoCategoria";
 import CategoriasViewModal from "./CategoriasViewModal";
 
-// --- Ícones SVG (Mesmos da Tarefa) ---
 const EditIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
     <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
@@ -28,7 +27,7 @@ export default function CategoriasTable({ categorias, onEdit, onUpdate }: Props)
     if (!confirm("Deseja realmente excluir esta categoria?")) return;
     
     try {
-      await fetch(`http://localhost:8080/categorias/${id}`, { method: "DELETE" });
+      await fetch(`https://equilibra-8yr9.onrender.com/categorias/${id}`, { method: "DELETE" });
       onUpdate();
     } catch (error) {
       console.error("Erro ao excluir:", error);
@@ -38,11 +37,9 @@ export default function CategoriasTable({ categorias, onEdit, onUpdate }: Props)
   return (
     <>
       <div className="w-full">
-        {/* Container com bordas arredondadas e sombra */}
         <div className="overflow-hidden rounded-2xl shadow-lg bg-[var(--surface)] border border-[var(--border-subtle)]">
           <table className="w-full text-left border-collapse">
             
-            {/* HEADER: Visível apenas no Desktop (md+) */}
             <thead className="hidden md:table-header-group bg-[var(--equilibra-dark)] text-white">
               <tr>
                 <th className="p-5 text-xs font-semibold uppercase tracking-wider opacity-90">Nome</th>
@@ -52,7 +49,6 @@ export default function CategoriasTable({ categorias, onEdit, onUpdate }: Props)
               </tr>
             </thead>
 
-            {/* BODY: No mobile vira blocos (Cards), no Desktop vira linhas (Table-Row) */}
             <tbody className="block md:table-row-group p-4 md:p-0">
               {categorias.map((c) => (
                 <tr
@@ -72,21 +68,17 @@ export default function CategoriasTable({ categorias, onEdit, onUpdate }: Props)
                     transition-all duration-200 cursor-pointer
                   "
                 >
-                  {/* Coluna: Nome */}
                   <td className="p-4 md:p-5 block md:table-cell">
                     <div className="flex flex-col md:block">
-                      {/* Label Mobile */}
                       <span className="md:hidden text-[var(--text-secondary)] text-xs font-bold uppercase mb-1">
                         Nome
                       </span>
-                      {/* Valor */}
                       <span className="font-semibold text-[var(--text-primary)] text-base">
                         {c.nome}
                       </span>
                     </div>
                   </td>
 
-                  {/* Coluna: Tipo (com Badge) */}
                   <td className="p-4 md:p-5 block md:table-cell">
                     <div className="flex items-center justify-between md:justify-start">
                       <span className="md:hidden text-[var(--text-secondary)] text-xs font-bold uppercase">
@@ -102,7 +94,6 @@ export default function CategoriasTable({ categorias, onEdit, onUpdate }: Props)
                     </div>
                   </td>
 
-                  {/* Coluna: ID */}
                   <td className="p-4 md:p-5 block md:table-cell">
                     <div className="flex items-center justify-between md:justify-start">
                       <span className="md:hidden text-[var(--text-secondary)] text-xs font-bold uppercase">
@@ -114,7 +105,6 @@ export default function CategoriasTable({ categorias, onEdit, onUpdate }: Props)
                     </div>
                   </td>
 
-                  {/* Coluna: Ações */}
                   <td
                     className="p-4 md:p-5 block md:table-cell border-t border-[var(--border-subtle)] md:border-0 mt-2 md:mt-0"
                     onClick={(e) => e.stopPropagation()}
