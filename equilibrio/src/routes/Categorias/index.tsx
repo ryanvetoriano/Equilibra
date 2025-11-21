@@ -6,7 +6,6 @@ import CategoriasForm from "../../components/Categorias/CategoriasForm";
 export default function Categorias() {
   const [categorias, setCategorias] = useState<TipoCategoria[]>([]);
   const [loading, setLoading] = useState(true);
-
   const [openModal, setOpenModal] = useState(false);
   const [categoriaEditando, setCategoriaEditando] = useState<TipoCategoria | null>(null);
 
@@ -37,26 +36,36 @@ export default function Categorias() {
   }
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-[#02353C]">Categorias</h1>
+    <main className="w-full min-w-0">
+      {/* Header Responsivo */}
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6 text-[var(--text-primary)]">
+        <h1 className="text-2xl sm:text-3xl font-bold">
+          Categorias
+        </h1>
 
         <button
           onClick={abrirCriacao}
-          className="px-5 py-2 bg-[var(--surface)] text-white rounded-lg shadow hover:bg-[#15586B] transition"
+          className="
+            w-full sm:w-auto px-5 py-2 
+            bg-[var(--surface)] text-white 
+            rounded-lg shadow hover:opacity-90 
+            transition font-medium
+          "
         >
           + Nova Categoria
         </button>
       </div>
 
       {loading ? (
-        <p>Carregando...</p>
+        <p className="text-sm opacity-70">Carregando...</p>
       ) : (
-        <CategoriasTable
-          categorias={categorias}
-          onEdit={abrirEdicao}
-          onUpdate={carregarCategorias}
-        />
+        <div className="overflow-x-auto rounded-lg shadow-sm">
+          <CategoriasTable
+            categorias={categorias}
+            onEdit={abrirEdicao}
+            onUpdate={carregarCategorias}
+          />
+        </div>
       )}
 
       {openModal && (
@@ -66,6 +75,6 @@ export default function Categorias() {
           onSave={carregarCategorias}
         />
       )}
-    </div>
+    </main>
   );
 }

@@ -27,7 +27,7 @@ export default function FAQ() {
     {
       pergunta: "O tema escuro está disponível?",
       resposta:
-        "Sim! O projeto conta com um tema escuro moderno e acessível para aqueles que preferem utiliza-lo.",
+        "Sim! O projeto conta com um tema escuro moderno e acessível para aqueles que preferem utilizá-lo.",
     },
   ];
 
@@ -36,29 +36,33 @@ export default function FAQ() {
   }
 
   return (
-    <main className="p-8 text-[#02353C]">
-      <h1 className="text-3xl font-bold mb-6">FAQ — Perguntas Frequentes</h1>
+    <main className="px-4 py-8 md:px-8 text-[#02353C] max-w-4xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6 text-center md:text-left text-[var(--text-primary)]">
+        FAQ — Perguntas Frequentes
+      </h1>
 
-      <div className="flex flex-col gap-4 max-w-2xl">
+      <div className="flex flex-col gap-4 w-full">
         {faqs.map((faq, index) => {
           const isOpen = openIndex === index;
 
           return (
             <div
               key={index}
-              className="bg-white shadow-lg rounded-xl border border-[#3FD0C9]/40"
+              className="bg-white shadow-md rounded-xl border border-[#3FD0C9]/40"
             >
               <button
                 onClick={() => toggle(index)}
-                className="flex items-center justify-between w-full p-4 text-left"
+                className="flex items-center justify-between w-full p-4 text-left cursor-pointer"
               >
-                <span className="font-semibold text-lg">{faq.pergunta}</span>
+                <span className="font-semibold text-lg leading-snug">
+                  {faq.pergunta}
+                </span>
 
                 <svg
                   width="22"
                   height="22"
                   viewBox="0 0 24 24"
-                  className={`transition-transform duration-300 ${
+                  className={`transition-transform duration-300 shrink-0 ${
                     isOpen ? "rotate-180" : "rotate-0"
                   }`}
                   fill="#2EAF7D"

@@ -48,10 +48,10 @@ export default function Home() {
   const totalMinutos = tarefas.reduce((sum, t) => sum + t.duracaoMin, 0);
 
   const hoje = new Date();
+  const hojeStr = hoje.toISOString().split("T")[0];
 
-  const hojeStr = hoje.toISOString().split("T")[0]; // "2025-11-20"
   const tarefasHoje = tarefas.filter(
-    t => t.dataTarefa.split("T")[0] === hojeStr
+    (t) => t.dataTarefa.split("T")[0] === hojeStr
   ).length;
 
   const dias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
@@ -75,10 +75,10 @@ export default function Home() {
   }));
 
   return (
-    <div className="flex flex-col gap-8 text-[var(--text-primary)]">
+    <div className="flex flex-col gap-8 text-[var(--text-primary)] w-full max-w-full overflow-x-hidden">
       <h1 className="text-3xl font-bold">Dashboard</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <DashboardCard title="Tarefas hoje" value={tarefasHoje} />
         <DashboardCard title="Total de tarefas" value={totalTarefas} />
         <DashboardCard title="Minutos totais" value={`${totalMinutos} min`} />
@@ -89,7 +89,9 @@ export default function Home() {
         <CategoryPieChart data={categoriasUsadas} />
       </div>
 
-      <TasksTimelineChart data={timeline} />
+      <div className="w-full">
+        <TasksTimelineChart data={timeline} />
+      </div>
     </div>
   );
 }

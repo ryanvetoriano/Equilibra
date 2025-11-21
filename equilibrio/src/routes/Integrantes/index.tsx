@@ -28,10 +28,12 @@ export default function Integrantes() {
   ];
 
   return (
-    <main className="p-8 text-[#02353C]">
-      <h1 className="text-3xl font-bold mb-6">Contato dos Integrantes</h1>
+    <main className="p-4 sm:p-6 lg:p-10 text-[#02353C]">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center sm:text-left text-[var(--text-primary)]">
+        Contato dos Integrantes
+      </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {integrantes.map((i, index) => (
           <div
             key={index}
@@ -40,7 +42,7 @@ export default function Integrantes() {
               hover:shadow-xl transition
             "
           >
-            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-[#3FD0C9]">
+            <div className="w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-full overflow-hidden border-4 border-[#3FD0C9]">
               <img
                 src={i.img}
                 alt={i.nome}
@@ -48,30 +50,37 @@ export default function Integrantes() {
               />
             </div>
 
-            <h2 className="text-xl font-semibold text-center mt-4">{i.nome}</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-center mt-4">
+              {i.nome}
+            </h2>
 
             <p className="text-center text-sm mt-1 opacity-70">
               RM: {i.rm}
             </p>
 
-            <div className="mt-4 flex justify-center gap-4">
+            <div className="mt-4 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
               <a
                 href={i.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full bg-gradient-to-r 
+                className="
+                  px-4 py-2 rounded-full bg-gradient-to-r 
                   from-[#2EAF7D] to-[#3FD0C9] text-white font-medium
-                  hover:opacity-90 transition"
+                  hover:opacity-90 transition text-center
+                "
               >
                 GitHub
               </a>
+
               <a
                 href={i.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full bg-gradient-to-r 
+                className="
+                  px-4 py-2 rounded-full bg-gradient-to-r 
                   from-[#0077B5] to-[#00A0DC] text-white font-medium
-                  hover:opacity-90 transition"
+                  hover:opacity-90 transition text-center
+                "
               >
                 LinkedIn
               </a>

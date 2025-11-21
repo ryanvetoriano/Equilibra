@@ -48,24 +48,35 @@ export default function Tarefas() {
     }
 
     return (
-        <div>
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold text-[#02353C]">Tarefas</h1>
+        <div className="w-full min-w-0">
+            {/* Header Responsivo */}
+            <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6 text-[var(--text-primary)]">
+                <h1 className="text-2xl sm:text-3xl font-bold">
+                    Tarefas
+                </h1>
 
                 <button
                     onClick={abrirCriacao}
-                    className="px-5 py-2 bg-[var(--surface)] text-white rounded-lg shadow hover:bg-[#15586B] transition"
+                    className="w-full sm:w-auto px-5 py-2 bg-[var(--surface)] text-white rounded-lg shadow hover:opacity-90 transition"
                 >
                     + Nova Tarefa
                 </button>
             </div>
 
+            {/* Tabela / Loading */}
             {loading ? (
-                <p>Carregando...</p>
+                <p className="text-sm opacity-70">Carregando...</p>
             ) : (
-                <TarefaTable tarefas={tarefas} onEdit={abrirEdicao} onUpdate={carregarDados} />
+                <div className="overflow-x-auto rounded-lg shadow-sm">
+                    <TarefaTable 
+                        tarefas={tarefas} 
+                        onEdit={abrirEdicao} 
+                        onUpdate={carregarDados} 
+                    />
+                </div>
             )}
 
+            {/* Modal */}
             {openModal && (
                 <TarefaForm
                     close={() => setOpenModal(false)}

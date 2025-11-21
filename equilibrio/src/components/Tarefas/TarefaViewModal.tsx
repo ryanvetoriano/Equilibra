@@ -11,13 +11,14 @@ export default function TarefaViewModal({ tarefa, close }: Props) {
 
       <div
         className="
-          w-[420px] p-6 rounded-xl shadow-lg 
+          w-full max-w-[420px] 
+          p-6 sm:p-8 rounded-xl shadow-lg 
           bg-white text-[#02353C]
           border border-[var(--border-subtle)]
           dark:bg-[var(--surface)] dark:text-white dark:border-[var(--border-subtle)]
         "
       >
-        <h2 className="text-2xl font-bold text-[var(--accent)] mb-4">
+        <h2 className="text-xl sm:text-2xl font-bold text-[var(--accent)] mb-4">
           {tarefa.titulo}
         </h2>
 
@@ -45,7 +46,7 @@ export default function TarefaViewModal({ tarefa, close }: Props) {
             Descrição
           </h3>
 
-          <p className="text-[var(--accent)]">
+          <p className="text-[var(--text-primary)]">
             {tarefa.descricao || "Sem descrição."}
           </p>
         </div>
@@ -54,7 +55,7 @@ export default function TarefaViewModal({ tarefa, close }: Props) {
           <button
             onClick={close}
             className="
-              px-4 py-2 rounded-md 
+              px-5 py-2 rounded-md 
               bg-[var(--accent)] 
               text-[var(--text-on-accent)] 
               hover:opacity-90
